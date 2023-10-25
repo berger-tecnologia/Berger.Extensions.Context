@@ -6,10 +6,9 @@
 		<OutputType>Library</OutputType>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<IsPackable>true</IsPackable>
-		<Company>Berger Information Technology</Company>
 		<Copyright>Berger Information Technology</Copyright>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<Folder Include="Properties\" />
 	</ItemGroup>
