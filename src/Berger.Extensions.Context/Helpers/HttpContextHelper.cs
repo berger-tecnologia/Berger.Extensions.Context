@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Microsoft.Net.Http.Headers;
+using Berger.Extensions.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Berger.Extensions.Context
@@ -22,28 +23,20 @@ namespace Berger.Extensions.Context
         {
             return context.Request.Headers[header].ToString();
         }
-        public static string GetClaims(this HttpContext context, string claim)
-        {
-            return GetClaims(context.User, claim);
-        }
-        public static string GetClaims(this AuthorizationHandlerContext context, string claim)
-        {
-            return GetClaims(context.User, claim);
-        }
-        public static string GetClaims(ClaimsPrincipal claimPrincipal, string claim)
-        {
-            return claimPrincipal.FindFirstValue(claim);
-        }
         public static string GetBearer(this IHttpContextAccessor accessor)
         {
             return accessor.HttpContext.GetBearer();
+        }
+        public static Guid CreateDevice(this IHttpContextAccessor accessor, Guid deviceId)
+        {
+            throw new NotImplementedException();
         }
         public static string GetBearer(this HttpContext context)
         {
             var token = context.GetHeader(HeaderNames.Authorization);
 
             if (!string.IsNullOrEmpty(token))
-                return token.Replace("Bearer ", string.Empty);
+                return token.Replace(Standards.Bearer, string.Empty);
 
             return string.Empty;
         }
